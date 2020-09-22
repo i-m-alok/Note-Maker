@@ -20,7 +20,7 @@ export default class App extends Component {
         </div>
         {this.state.link === "addNote" && console.log("Add Note")}
         <button className="btn btn-outline-info">
-          <i class="fa fa-plus-circle"></i>
+          <i className="fa fa-plus-circle"></i>
         </button>
       </div>
     );
