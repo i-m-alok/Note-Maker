@@ -8,11 +8,15 @@ export default class Snippet extends Component {
     this.setState({ text: this.props.text });
   }
   render() {
-    console.log("Rendered");
     return (
-      <div className="card-body">
-        <p className="card">{this.props.text}</p>
+      <div className="d-flex-col card m-2">
+        <p className="snippet">{this.props.text + "..."}</p>
       </div>
     );
   }
+
+  // utility method
+  showSome = () => {
+    return Math.floor((40 * this.state.text.length) / 100);
+  };
 }
