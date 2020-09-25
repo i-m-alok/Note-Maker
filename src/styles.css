@@ -11,3 +11,15 @@
 .snippet {
   font-size: 1.5rem;
 }
+
+.plus {
+  position: fixed;
+  bottom: 2vh;
+  right: 2vw;
+  padding: 1rem;
+}
+
+#editable {
+  resize: both;
+  overflow: auto;
+}

@@ -1,16 +1,33 @@
 import React, { Component } from "react";
-
+import { Link } from "react-router-dom";
 export default class Snippet extends Component {
-  state = {
-    text: ""
-  };
+  constructor() {
+    super();
+    this.state = {
+      text: ""
+    };
+  }
   componentDidMount() {
     this.setState({ text: this.props.text });
   }
+
+  onClick = () => {
+    const snippetText = document.getElementById("snippet-text");
+    if (snippetText) {
+      // console.log(snippetText, "after type");
+      this.props.handleEditClick(snippetText.innerText);
+    }
+  };
   render() {
+    // console.log(this.props);
     return (
-      <div className="d-flex-col card m-2">
-        <p className="snippet">{this.props.text + "..."}</p>
+      <div className="d-flex">
+        <div className="card m-2 snippet col">
+          <p id="snippet-text">{this.props.text}</p>
+          <Link to={`/edit_note`} onClick={this.onClick}>
+            <i className="fa fa-edit"></i>
+          </Link>
+        </div>
       </div>
     );
   }

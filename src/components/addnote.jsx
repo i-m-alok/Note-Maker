@@ -10,29 +10,38 @@ class AddNote extends Component {
   }
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.addNoteToState(this.state.text);
+    let currentText = document.getElementById("editable").innerHTML;
+    if (this.props.title === "Add Note") {
+      console.log(currentText);
+      this.props.addNoteToState(currentText);
+    } else {
+      // console.log(this.props, this.state);
+      this.props.editNote(currentText);
+    }
   };
 
-  handleChange = (e) => {
-    this.setState({ text: e.target.value });
-  };
+  // handleChange = (e) => {
+  //   this.setState({ text: e.target.value });
+  //   console.log(e);
+  // };
   render() {
+    // console.log(this.props);
     return (
       <div className="p-2">
-        <h3 className="mt-5">Add Note</h3>
+        <h3 className="mt-5">{this.props.title}</h3>
         <form
           className="form-group"
           onSubmit={(event) => this.handleSubmit(event)}
         >
-          <textarea
-            value={this.state.text}
+          <p
+            suppressContentEditableWarning
+            contentEditable
             className="form-control"
-            name="text"
-            rows="5"
-            id="comment"
-            onChange={(event) => this.handleChange(event)}
-          ></textarea>
-          <button className="btn btn-outline-info m-2" to="/">
+            id="editable"
+          >
+            {this.props.textToEdit}
+          </p>
+          <button className="btn btn-outline-info m-2 bg-dark p-3" to="/">
             <i className="fa fa-check-circle"></i>
           </button>
         </form>
