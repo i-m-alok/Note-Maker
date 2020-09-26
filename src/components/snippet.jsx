@@ -11,19 +11,18 @@ export default class Snippet extends Component {
     this.setState({ text: this.props.text });
   }
 
+  // method to call the handle edit method in App.js
   onClick = () => {
-    const snippetText = document.getElementById("snippet-text");
+    const snippetText = document.getElementById(`snippet-text${this.props.id}`);
     if (snippetText) {
-      // console.log(snippetText, "after type");
       this.props.handleEditClick(snippetText.innerText);
     }
   };
   render() {
-    // console.log(this.props);
     return (
       <div className="d-flex">
         <div className="card m-2 snippet col">
-          <p id="snippet-text">{this.props.text}</p>
+          <p id={`snippet-text${this.props.id}`}>{this.props.text}</p>
           <Link to={`/edit_note`} onClick={this.onClick}>
             <i className="fa fa-edit"></i>
           </Link>
@@ -32,7 +31,7 @@ export default class Snippet extends Component {
     );
   }
 
-  // utility method
+  // unnecessary for now: utility method
   showSome = () => {
     return Math.floor((40 * this.state.text.length) / 100);
   };

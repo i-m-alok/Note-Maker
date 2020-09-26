@@ -12,20 +12,13 @@ class AddNote extends Component {
     e.preventDefault();
     let currentText = document.getElementById("editable").innerHTML;
     if (this.props.title === "Add Note") {
-      console.log(currentText);
       this.props.addNoteToState(currentText);
     } else {
-      // console.log(this.props, this.state);
       this.props.editNote(currentText);
     }
   };
 
-  // handleChange = (e) => {
-  //   this.setState({ text: e.target.value });
-  //   console.log(e);
-  // };
   render() {
-    // console.log(this.props);
     return (
       <div className="p-2">
         <h3 className="mt-5">{this.props.title}</h3>

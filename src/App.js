@@ -12,7 +12,7 @@ export default class App extends Component {
     this.textToEdit = null;
     this.textIdToEdit = null;
   }
-
+  // this method is help to add the new note into the state
   addNoteToState = (text) => {
     if (text) {
       let snippets = [...this.state.snippets];
@@ -26,20 +26,23 @@ export default class App extends Component {
     }
   };
 
+  // this method is update the edited text
   editNote = (text, id) => {
     let snippets = [...this.state.snippets];
-    console.log(snippets, id);
     snippets[id].text = text;
     this.setState({ snippets });
   };
+
+  // this method is to handle the edit button and extract the id and text to edit
   handleEditClick = (text) => {
     this.textToEdit = text;
     let toEditObject = this.state.snippets.filter((snippet) => {
-      return snippet.text === text;
+      return snippet.text === this.textToEdit;
     });
     this.textIdToEdit = toEditObject[0].id;
-    console.log(toEditObject, "editobj");
   };
+
+  // render method
   render() {
     return (
       <div className="App p-2">
@@ -71,6 +74,7 @@ export default class App extends Component {
                   <Snippet
                     key={snippet.id}
                     text={snippet.text}
+                    id={snippet.id}
                     handleEditClick={(text) => this.handleEditClick(text)}
                   />
                 ))}
